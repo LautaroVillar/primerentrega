@@ -1,5 +1,13 @@
  //---------------TIENDA DE BOTINES---------------
 
+
+ //-----Modificamos el titulo del html-----
+ let titulo = document.getElementById("titulo")
+console.log( titulo.innerText )
+
+titulo.innerText = "SIMULADOR INTERACTIVO EN CODER"
+console.log( titulo.innerText )
+
 //----------------Productos--------------
 class Producto {
     constructor (nombre, precio, stock){
@@ -16,6 +24,16 @@ const listaProductos = [];
 listaProductos.push(new Producto ("Nike", 18000, 10));
 listaProductos.push(new Producto ("Adidas",19000, 10));
 listaProductos.push(new Producto ("Puma", 11000, 15));
+
+//-----Creando elemento a partir de los objetos----------
+for (const articulos of listaProductos) {
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = `<h3> NOMBRE ${articulos.nombre}</h3>
+                            <p>  Precio: $${articulos.precio}</p>
+                            <b> Stock: ${articulos.stock}</b>`;
+    document.body.appendChild(contenedor);
+}
+
 
 
 //-----------Precio de menor a mayor---------------
@@ -51,7 +69,7 @@ const agregarProductoAlCarrito = () => {
     do {
         producto = prompt ("¿Que marca queres comprar, Nike, Adidas o Puma?"); 
         cantidad = parseInt(prompt ("¿Cuántos querés comprar?"));
-        console.log(cantidad)
+        
 
         switch (producto) {
             case listaProductos[0].nombre:
