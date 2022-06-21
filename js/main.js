@@ -1,7 +1,7 @@
  //---------------TIENDA DE BOTINES---------------
 
 
- //-----Modificamos el titulo del html-----
+ //-----Modificamos el titulo del html---------------
  let titulo = document.getElementById("titulo")
 console.log( titulo.innerText )
 
@@ -28,7 +28,7 @@ listaProductos.push(new Producto ("Puma", 11000, 15));
 //-----Creando elemento a partir de los objetos----------
 for (const articulos of listaProductos) {
     let contenedor = document.createElement("div");
-    contenedor.innerHTML = `<h3> NOMBRE ${articulos.nombre}</h3>
+    contenedor.innerHTML = `<h3 > NOMBRE ${articulos.nombre}</h3>
                             <p>  Precio: $${articulos.precio}</p>
                             <b> Stock: ${articulos.stock}</b>`;
     document.body.appendChild(contenedor);
@@ -56,7 +56,7 @@ const mostrarListaOrdenada = () => {
     alert("Lista de precios:"+"\n"+lista.join("\n"))
 }
 
-//-----FUNCIONES PARA EL PROCESO DE COMPRA-----
+//------------------Funciones para la compra----------------
 let total = 0;
 
 const agregarProductoAlCarrito = () => {
@@ -65,7 +65,7 @@ const agregarProductoAlCarrito = () => {
     let cantidad = 0;
     let precio = 0;
 
-    //Ciclo para sumar productos al carrito
+//--------------Ciclo para sumar productos al carrito-------------------
     do {
         producto = prompt ("¿Que marca queres comprar, Nike, Adidas o Puma?"); 
         cantidad = parseInt(prompt ("¿Cuántos querés comprar?"));
@@ -124,4 +124,9 @@ const comprarProductos = () => {
     agregarProductoAlCarrito();
 }    
 comprarProductos();
-alert ("El total de tu compra es: $"+total);
+
+//---------Incoporación de eventos-------------
+let boton = document.getElementById("comprar")
+      boton.addEventListener("click", comprarProductos)
+      alert ("El total de tu compra es: $"+total);
+  
