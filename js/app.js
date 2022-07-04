@@ -34,7 +34,6 @@ stockProductos.forEach((producto) => {
     div.innerHTML = `
     <img src=${producto.img} class="img" alt= "">
     <h3>${producto.nombre}</h3>
-
     <p>Talle: ${producto.talle}</p>
     <p class="precioProducto">Precio:$ ${producto.precio}</p>
     <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fas fa-shopping-cart"></i></button>
@@ -43,39 +42,37 @@ stockProductos.forEach((producto) => {
 
 
     const boton = document.getElementById(`agregar${producto.id}`)
-  
+   
 
     boton.addEventListener('click', () => {
-        
+    
         agregarAlCarrito(producto.id)
-      
+
     })
 })
 
 
 
-//AGREGAR AL CARRITO
+
 const agregarAlCarrito = (prodId) => {
 
-
+  
     const existe = carrito.some (prod => prod.id === prodId) 
 
     if (existe){ 
         const prod = carrito.map (prod => { 
-            
             if (prod.id === prodId){
                 prod.cantidad++
             }
         })
     } else { 
-        const item = stockProductos.find((prod) => prod.id === prodId)/
+        const item = stockProductos.find((prod) => prod.id === prodId)
+        
         carrito.push(item)
     }
-  
-    actualizarCarrito() 
+    
+    actualizarCarrito() /
 }
-
-
 
 const eliminarDelCarrito = (prodId) => {
     const item = carrito.find((prod) => prod.id === prodId)
@@ -83,7 +80,9 @@ const eliminarDelCarrito = (prodId) => {
     const indice = carrito.indexOf(item) 
 
     carrito.splice(indice, 1) 
+ 
     actualizarCarrito() 
+
     console.log(carrito)
 }
 
@@ -106,10 +105,11 @@ const actualizarCarrito = () => {
         localStorage.setItem('carrito', JSON.stringify(carrito))
 
     })
-    
-    contadorCarrito.innerText = carrito.length // actualizamos con la longitud del carrito.
-   
+
+    contadorCarrito.innerText = carrito.length 
+
     console.log(carrito)
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
-    
+  
+
 }
